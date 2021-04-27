@@ -1,5 +1,6 @@
 import Joystick from '../Player/Joystick.class'
 import Player from '../Player/Player.class'
+import { checkMatrixIndex, checkMatrixStatic } from './playfield.utils'
 
 export default class Playfield {
   constructor(HUD) {
@@ -29,34 +30,20 @@ export default class Playfield {
   }
 
   renderBlocks() {
-    this.HUD.context.fillStyle = 'cyan'
-    for (let line = 0; line < this.arena.length; line++) {
-      for (let column = 0; column < this.arena.length; column++) {
-        if (this.arena[line][column] !== 0) {
-          this.HUD.context.fillRect(
-            column * this.HUD.pixelSize,
-            line * this.HUD.pixelSize,
-            this.HUD.pixelSize,
-            this.HUD.pixelSize
-            )
-          }
-        }
+    this.HUD.context.fillStyle = 'red'
+    checkMatrixIndex(this.arena, (line, column) => {
+      if (this.arena[line][column] !== 0) {
+        this.HUD.drawOnScreen(column, line)
       }
-    }
-    
-    renderPlayer() {
-    for (let line = 0; line < this.Player.piece.length; line++) {
-      for (let column = 0; column < this.Player.piece[line].length; column++) {
-        if (this.Player.piece[line][column] !== 0) {
-          this.HUD.context.fillRect(
-            (this.Player.position.x + column) * this.HUD.pixelSize,
-            (this.Player.position.y + line) * this.HUD.pixelSize,
-            this.HUD.pixelSize,
-            this.HUD.pixelSize
-          )
-        }
+    })
+  }
+
+  renderPlayer() {
+    checkMatrixIndex(this.Player.piece, (line, column) => {
+      if (this.Player.piece[line][column] !== 0) {
+        this.HUD.drawOnScreen(this.Player.position.x + column, this.Player.position.y + line)
       }
-    }
+    })
   }
 
   clearPlayfield() {

@@ -13,6 +13,10 @@ class Game {
       // this.playing = true
 
       this.PlayerPlayfield.createPlayfield()
+      // this.PlayerPlayfield.arena[1][1] = 1
+      // this.PlayerPlayfield.arena[0][2] = 1
+      // this.PlayerPlayfield.arena[9][2] = 1
+      // this.PlayerPlayfield.arena[3][7] = 1
       this.gameLoop()
     }
     return Game.instance
@@ -22,7 +26,9 @@ class Game {
     this.PlayerPlayfield.clearPlayfield()
 
     this.Clock.frameTick(timer)
-    this.Clock.triggerWhen(3000, () => {})
+    this.Clock.triggerWhen(3000, () => {
+      
+    })
 
     this.PlayerPlayfield.renderPlayer()
     this.PlayerPlayfield.renderBlocks()
