@@ -9,6 +9,7 @@ export default class Game {
     this.playerPlayfield = new Playfield(this.hud, this.player)
 
     this.playerPlayfield.createPlayfield()
+    this.player.spawnPiece()
     // this.playerPlayfield.arena[1][1] = 1
     // this.playerPlayfield.arena[0][2] = 1
     // this.playerPlayfield.arena[9][2] = 1

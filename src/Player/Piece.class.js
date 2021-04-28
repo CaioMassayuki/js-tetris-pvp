@@ -1,15 +1,10 @@
-import { checkMatrixIndex } from '../utils/checkMatrixIndex'
+import { checkMatrixIndex } from 'utils/checkMatrixIndex'
 
 export default class Piece {
-  constructor(hud) {
+  constructor(hud, matrix) {
     this.hud = hud
-
     this.position = { x: 4, y: 0 }
-    this.matrix = [
-      [1, 1, 1], 
-      [0, 1, 0], 
-      [0, 1, 0]
-    ]
+    this.matrix = matrix
   }
 
   renderPiece() {

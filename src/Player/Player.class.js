@@ -7,11 +7,11 @@ export default class Player {
     this.pieceBag = new PieceBag(this.hud)
     this.joystick = new Joystick()
 
-    this.joystick.plugJoystick()
+    this.joystick.plugJoystick(this.piece)
   }
 
-  givePiece(){
+  spawnPiece(){
     this.piece = this.pieceBag.takePiece()
-    this.joystick.plugJoystick(piece)
+    this.joystick.plugJoystick(this.piece)
   }
 }

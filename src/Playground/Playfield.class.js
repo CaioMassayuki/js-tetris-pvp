@@ -1,4 +1,4 @@
-import { checkMatrixIndex } from '../utils/checkMatrixIndex'
+import { checkMatrixIndex } from 'utils/checkMatrixIndex'
 
 export default class Playfield {
   constructor(hud, player) {
