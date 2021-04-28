@@ -8,9 +8,6 @@ export default class Game {
     this.player = new Player(this.hud)
     this.playerPlayfield = new Playfield(this.hud, this.player)
 
-    // this.playfields = []
-    // this.playing = true
-
     this.playerPlayfield.createPlayfield()
     // this.playerPlayfield.arena[1][1] = 1
     // this.playerPlayfield.arena[0][2] = 1

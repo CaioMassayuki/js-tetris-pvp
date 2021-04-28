@@ -12,3 +12,5 @@ function drawPlayfield() {
   }
   context.stroke()
 }
+
+// Melhorar performance da rotação de peças criando Matrizes previveis de cada peça

@@ -1,6 +1,5 @@
 export default class Joystick {
-  constructor(piece) {
-    this.piece = piece
+  constructor() {
     this.moveSet = {}
     this.controller = this.startController.bind(this)
   }
@@ -9,16 +8,16 @@ export default class Joystick {
     if (typeof this.moveSet[event.key] === 'function') this.moveSet[event.key]()
   }
 
-  movePlayer({ x, y }) {
-    this.piece.position = { x, y }
+  movePiece(piece, { x, y }) {
+    piece.position = { x, y }
   }
 
-  plugJoystick() {
+  plugJoystick(piece) {
     this.moveSet = {
-      ArrowLeft: () => this.movePlayer({ x: this.piece.position.x - 1, y: this.piece.position.y }),
-      ArrowUp: () => this.movePlayer({ x: this.piece.position.x, y: this.piece.position.y - 1 }),
-      ArrowRight: () => this.movePlayer({ x: this.piece.position.x + 1, y: this.piece.position.y }),
-      ArrowDown: () => this.movePlayer({ x: this.piece.position.x, y: this.piece.position.y + 1 }),
+      ArrowLeft: () => this.movePiece(piece, { x: piece.position.x - 1, y: piece.position.y }),
+      ArrowUp: () => this.movePiece(piece, { x: piece.position.x, y: piece.position.y - 1 }),
+      ArrowRight: () => this.movePiece(piece, { x: piece.position.x + 1, y: piece.position.y }),
+      ArrowDown: () => this.movePiece(piece, { x: piece.position.x, y: piece.position.y + 1 }),
       q: () => this.unplugJoystick(),
     }
     document.addEventListener('keydown', this.controller, true)
@@ -28,4 +27,5 @@ export default class Joystick {
     this.moveSet = {}
     document.removeEventListener('keydown', this.controller, true)
   }
+
 }

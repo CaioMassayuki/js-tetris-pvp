@@ -27,7 +27,7 @@ export default class Playfield {
   }
 
   renderBlocks() {
-    this.hud.context.fillStyle = '#D0C011'
+    this.hud.context.fillStyle = 'red'
     checkMatrixIndex(this.arena, (line, column) => {
       if (this.arena[line][column] !== 0) {
         this.hud.drawOnScreen(column, line)
