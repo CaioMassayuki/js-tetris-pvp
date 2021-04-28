@@ -1,43 +1,32 @@
-import HUD from './HUD/HUD.class'
-import Clock from './GameLogic/Clock.class'
 import Playfield from './Playground/Playfield.class'
+import Player from './Player/Player.class'
 
-class Game {
-  constructor() {
-    if (!Game.instance) {
-      this.HUD = new HUD()
-      this.Clock = new Clock()
-      this.PlayerPlayfield = new Playfield(this.HUD)
+export default class Game {
+  constructor(hud, clock) {
+    this.hud = hud
+    this.clock = clock
+    this.player = new Player(this.hud)
+    this.playerPlayfield = new Playfield(this.hud, this.player)
 
-      // this.playfields = []
-      // this.playing = true
+    // this.playfields = []
+    // this.playing = true
 
-      this.PlayerPlayfield.createPlayfield()
-      // this.PlayerPlayfield.arena[1][1] = 1
-      // this.PlayerPlayfield.arena[0][2] = 1
-      // this.PlayerPlayfield.arena[9][2] = 1
-      // this.PlayerPlayfield.arena[3][7] = 1
-      this.gameLoop()
-    }
-    return Game.instance
+    this.playerPlayfield.createPlayfield()
+    // this.playerPlayfield.arena[1][1] = 1
+    // this.playerPlayfield.arena[0][2] = 1
+    // this.playerPlayfield.arena[9][2] = 1
+    // this.playerPlayfield.arena[3][7] = 1
   }
-  
+
   gameLoop(timer = 0) {
-    this.PlayerPlayfield.clearPlayfield()
+    this.playerPlayfield.clearPlayfield()
 
-    this.Clock.frameTick(timer)
-    this.Clock.triggerWhen(3000, () => {
-      
-    })
+    this.clock.frameTick(timer)
+    this.clock.triggerWhen(3000, () => {})
 
-    this.PlayerPlayfield.renderPlayer()
-    this.PlayerPlayfield.renderBlocks()
-    this.PlayerPlayfield.drawOutline()
+    this.player.piece.renderPiece()
+    this.playerPlayfield.renderBlocks()
+    this.playerPlayfield.drawOutline()
     requestAnimationFrame((timer) => this.gameLoop(timer))
   }
 }
-
-const instance = new Game()
-Object.freeze(instance)
-
-export default instance
